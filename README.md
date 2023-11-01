@@ -11,14 +11,14 @@ Inspired by Andres Spies ESP-1ch-Gateway https://github.com/SensorsIot/ESP-1ch-G
 
 # Features
 ------------------------
-
+- listen on configurable frequency and spreading factor
+- SF7 to SF12
+- can forward to one server
 
 
 # Dependencies
 ------------------------
-- listen on configurable frequency and spreading factor
-- SF7 to SF12
-- can forward to one server
+
 
 
 # Configurations
