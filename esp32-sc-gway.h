@@ -10,6 +10,9 @@
 
  *******************************************************************************/
 
+// 
+#define delay 100
+
 // WiFi definitions
 // Setup your Wifi SSID and password
 // If your device already connected to your Wifi, then
@@ -19,7 +22,6 @@
 #define _SSID mySSID
 #define _PASS myPASSWORD
 
-
 // Gateway Ident definitions
 #define _DESCRITPION ""
 #define _PLATFORM "ESP32"
@@ -27,10 +29,9 @@
 #define _LONG 0.0
 #define _ALT 0.0
 
-
 // REYAX RYLR890
-#define DEFAULT_PIN_TX 
-#define DEFAULT_PIN_RX
+#define DEFAULT_TX_PIN
+#define DEFAULT_RX_PIN
 #define baudRate 115200;
 #define AT_ADDRESS 1;
 #define AT_NETWORK_ID 10;
@@ -41,8 +42,10 @@
 #define AT_CRFOP 10;
 #define AT_PASSWORD "92A0ECEC9000DA0DCF0CAAB0ABA2E0EF";
 
-
 // Web Server
+#define URL_TEST_SERVER ""
+#define URL_SERVER ""
+#define URL_SECURE_SERVER ""
 
 
 
