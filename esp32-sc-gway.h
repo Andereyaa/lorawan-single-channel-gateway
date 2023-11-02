@@ -15,15 +15,15 @@
 
 // WiFi definitions
 // Setup your Wifi SSID and password
-#define _SSID mySSID
-#define _PASS myPASSWORD
+#define WIFI_SSID ""
+#define WIFI_PASS ""
 
 // Gateway Ident definitions
-#define _DESCRITPION ""
-#define _PLATFORM "ESP32"
-#define _LAT 0.0
-#define _LONG 0.0
-#define _ALT 0.0
+#define GW_DESCRITPION ""
+#define GW_PLATFORM "ESP32"
+#define GW_LAT 0.0
+#define GW_LONG 0.0
+#define GW_ALT 0.0
 
 // REYAX RYLR890
 #define DEFAULT_TX_PIN 18
