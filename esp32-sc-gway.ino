@@ -12,23 +12,23 @@ WiFiClient wifiClient;
 // ----------------------------------------------------------------------------
 int initialiseLoraRadio() {
   LoRaRadio.begin(baudRate, SERIAL_8N1, DEFAULT_RX_PIN, DEFAULT_TX_PIN);
-  delay(delay);
+  delay(delayInMillis);
   LoRaRadio.print((String) "AT+ADDRESS=" + AT_ADDRESS + "\r\n");
-  delay(delay);
+  delay(delayInMillis);
   LoRaRadio.print((String) "AT+NETWORKID=" + AT_NETWORK_ID + "\r\n");
-  delay(delay);
+  delay(delayInMillis);
   LoRaRadio.print((String) "AT+MODE=" + AT_MODE + "\r\n");
-  delay(delay);
+  delay(delayInMillis);
   LoRaRadio.print((String) "AT+IPR=" + AT_IPR + "\r\n");
-  delay(delay);
+  delay(delayInMillis);
   LoRaRadio.print((String) "AT+CRFOP=" + AT_CRFOP + "\r\n");
-  delay(delay);
+  delay(delayInMillis);
   LoRaRadio.print((String) "AT+BAND=" + AT_BAND + "\r\n");
-  delay(delay);
+  delay(delayInMillis);
   LoRaRadio.print((String) "AT+PARAMETER=" + AT_PARAMETER + "\r\n");
-  delay(delay);
-  LoRaRadio.print("AT+CPIN=" + AT_PASSWORD + "\r\n");
-  delay(delay);
+  delay(delayInMillis);
+  LoRaRadio.print((String) "AT+CPIN=" + AT_PASSWORD + "\r\n");
+  delay(delayInMillis);
   LoRaRadio.print("AT+CPIN?\r\n");  // confirm password is set
 
   return 0;
@@ -37,18 +37,18 @@ int initialiseLoraRadio() {
 // ----------------------------------------------------------------------------
 // Function to join the Wifi Network
 // ----------------------------------------------------------------------------
-int connectWifi(char* wifiSSID, char* wifiPASS) {
+int connectWifi(String wifiSSID, String wifiPASS) {
   int status = WiFi.status();
 
   WiFi.mode(WIFI_MODE_STA);
 
   // None empty SSID, try connect
-  if (*wifiSSID != '*' && *wifiPASS != '*') {
+  if (!wifiSSID.isEmpty() && !wifiPASS.isEmpty()) {
     Serial.printf("connecting to %s with password %s\r\n", wifiSSID, wifiPASS);
     // Loop until connected or 20 sec time out
     unsigned long this_start = millis();
     while (WiFi.status() != WL_CONNECTED && millis() - this_start < 20000) {
-      status = Wifi.begin(wifiSSID, wifiPASS);
+      status = WiFi.begin(wifiSSID, wifiPASS);
       delay(1000);
     }
   } else {
@@ -57,19 +57,19 @@ int connectWifi(char* wifiSSID, char* wifiPASS) {
   if (status == WL_CONNECTED) {
     Serial.printf("WiFi Connection OK \r\n");
     Serial.printf("SSID: ");
-    Serial.printf(WiFi.SSID());
+    Serial.print(WiFi.SSID());
     Serial.printf("\r\n");
     Serial.printf("IP Address: ");
-    Serial.printf(WiFi.localIP());
+    Serial.print(WiFi.localIP());
     Serial.printf("\r\n");
   } else {
     Serial.println("WiFi Connection FAIL");
   }
 
   Serial.println("Testing internet connection...");
-  if(wifiClient.connect(URL_TEST_SERVER, 80)){
+  if (wifiClient.connect(URL_TEST_SERVER, 80)) {
     Serial.println("Internet Connection OK");
-  }else{
+  } else {
     Serial.println("Internet Connection FAIL");
   }
 
@@ -84,7 +84,7 @@ int connectWifi(char* wifiSSID, char* wifiPASS) {
 // ----------------------------------------------------------------------------
 void setup() {
 
-  Serial.print(F("\r\nBooting "));
+  Serial.printf("\r\nBooting ");
 }
 
 
