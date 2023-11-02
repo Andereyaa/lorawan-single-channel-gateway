@@ -1,11 +1,14 @@
 #include <HardwareSerial.h>
 #include <WiFi.h>
+#include <HTTPClient.h>
+#include <Arduino_JSON.h>
 
 #include "esp32-sc-gway.h"  // This file contains configuration of GWay
 
 int debug = 1;  // Debug level! 0 is no msgs, 1 normal, 2 is extensive
 HardwareSerial LoRaRadio(2);
 WiFiClient wifiClient;
+HTTPClient httpClient;
 
 // ----------------------------------------------------------------------------
 // Function to initialise LoRa Radio
@@ -88,6 +91,8 @@ bool isConnectedToInternet(){
 }
 
 
+
+
 // ========================================================================
 // MAIN PROGRAM (SETUP AND LOOP)
 
@@ -126,4 +131,20 @@ void setup() {
 // function will be executed which means effectively that the
 // program crashes.
 // ----------------------------------------------------------------------------
-void loop() {}
+void loop() {
+  
+  // Receive Lora messages
+  if(LoRaRadio.available()){
+    yield();
+    
+    String incomingPacket = LoRaRadio.readString();
+
+    httpClient.begin(wifiClient, URL_SERVER);
+    JSONVar httpPostPayload;
+    httpPostPayload["data"] = incomingPacket;
+    httpClient.addHeader("Content-Type", "application/json");
+    httpClient.POST(JSON.stringify(httpPostPayload));
+
+
+  }
+}
