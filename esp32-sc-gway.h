@@ -10,15 +10,11 @@
 
  *******************************************************************************/
 
-// 
-#define delay 100
+//
+#define delayInMillis 100
 
 // WiFi definitions
 // Setup your Wifi SSID and password
-// If your device already connected to your Wifi, then
-// let as is (stars), it will connect using
-// your previous saved SDK credentials
-
 #define _SSID mySSID
 #define _PASS myPASSWORD
 
@@ -30,8 +26,8 @@
 #define _ALT 0.0
 
 // REYAX RYLR890
-#define DEFAULT_TX_PIN
-#define DEFAULT_RX_PIN
+#define DEFAULT_TX_PIN 18
+#define DEFAULT_RX_PIN 17
 #define baudRate 115200
 #define AT_ADDRESS 1
 #define AT_NETWORK_ID 10
@@ -46,6 +42,3 @@
 #define URL_TEST_SERVER ""
 #define URL_SERVER ""
 #define URL_SECURE_SERVER ""
-
-
-
