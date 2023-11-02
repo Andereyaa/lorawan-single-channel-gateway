@@ -52,6 +52,7 @@ int connectWifi(String wifiSSID, String wifiPASS) {
       delay(1000);
     }
   } else {
+    Serial.println(F("No SSID/PSK defined in sketch\r\nConnecting with SDK ones if any"));
   }
 
   if (status == WL_CONNECTED) {
@@ -66,15 +67,26 @@ int connectWifi(String wifiSSID, String wifiPASS) {
     Serial.println("WiFi Connection FAIL");
   }
 
+  return status;
+}
+
+// ----------------------------------------------------------------------------
+// Function to test internet connection
+// ----------------------------------------------------------------------------
+bool isConnectedToInternet(){
+
+  bool isConnected = false;
   Serial.println("Testing internet connection...");
   if (wifiClient.connect(URL_TEST_SERVER, 80)) {
     Serial.println("Internet Connection OK");
+    isConnected = true;
   } else {
     Serial.println("Internet Connection FAIL");
   }
-
-  return status;
+  
+  return isConnected;
 }
+
 
 // ========================================================================
 // MAIN PROGRAM (SETUP AND LOOP)
@@ -83,8 +95,22 @@ int connectWifi(String wifiSSID, String wifiPASS) {
 // Setup code (one time)
 // ----------------------------------------------------------------------------
 void setup() {
+  Serial.begin(baudRate);
+  Serial.printf("Booting up \r\n");
+  
+  initialiseLoraRadio();
 
-  Serial.printf("\r\nBooting ");
+  if(connectWifi(WIFI_SSID, WIFI_PASS) == WL_CONNECTED){
+    // If we are here we are connected to WLAN
+    // So now test the Internet Connection
+    if(isConnectedToInternet()){
+      Serial.println("Error Internet connection failed");
+    }
+  }
+
+  // TODO setup breathing LED 
+
+  Serial.printf("Boot complete \r\n");
 }
 
 
