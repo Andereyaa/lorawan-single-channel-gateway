@@ -9,6 +9,14 @@ The code is for testing and development purposes only, and is not meant for prod
 
 Inspired by Andres Spies ESP-1ch-Gateway https://github.com/SensorsIot/ESP-1ch-Gateway
 
+# Building from source
+------------------------
+## Requirements
+- Arduino IDE 2.2.1 or later
+- Reyax RYLR890 transceiver
+- Espressif ESP32-S3-DevKitC-1U
+
+
 # Features
 ------------------------
 - listen on configurable frequency and spreading factor
