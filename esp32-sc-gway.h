@@ -39,6 +39,6 @@
 #define AT_PASSWORD "92A0ECEC9000DA0DCF0CAAB0ABA2E0EF"
 
 // Web Server
-#define URL_TEST_SERVER ""
+#define URL_TEST_SERVER "www.google.com"
 #define URL_SERVER ""
-#define URL_SECURE_SERVER ""
+#define URL_SERVER_SSL

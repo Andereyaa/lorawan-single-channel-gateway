@@ -3,7 +3,7 @@
 #include <HTTPClient.h>
 #include <Arduino_JSON.h>
 
-#include "esp32-sc-gway.h"  // This file contains configuration of GWay
+#include "esp32-sc-gway.h"  // This file contains configuration for GateWay
 
 int debug = 1;  // Debug level! 0 is no msgs, 1 normal, 2 is extensive
 HardwareSerial LoRaRadio(2);
@@ -141,10 +141,8 @@ void loop() {
 
     httpClient.begin(wifiClient, URL_SERVER);
     JSONVar httpPostPayload;
-    httpPostPayload["data"] = incomingPacket;
+    httpPostPayload["raw_packet"] = incomingPacket;
     httpClient.addHeader("Content-Type", "application/json");
     httpClient.POST(JSON.stringify(httpPostPayload));
-
-
   }
 }
