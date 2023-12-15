@@ -34,7 +34,7 @@ Inspired by Andres Spies ESP-1ch-Gateway https://github.com/SensorsIot/ESP-1ch-G
 Defaults
 - LoRa: 
 
-Edit .h to change configureation (look for: "Configure these values!").
+Edit esp32-sc-gway.h to change configuration (look for: "Configure these values!").
 
 
 # License

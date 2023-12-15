@@ -1,5 +1,3 @@
-
-
 #include <Arduino.h>
 
 #define VERSION "V.0.0.0"

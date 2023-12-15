@@ -5,7 +5,7 @@
 
 #include "esp32-sc-gway.h"  // This file contains configuration for GateWay
 
-int debug = 1;  // Debug level! 0 is no msgs, 1 normal, 2 is extensive
+int debug = 1;  // Debug level! 0 is no msgs, 1 normal, 2 is verbose
 HardwareSerial LoRaRadio(2);
 WiFiClient wifiClient;
 HTTPClient httpClient;
@@ -108,7 +108,7 @@ void setup() {
   if(connectWifi(WIFI_SSID, WIFI_PASS) == WL_CONNECTED){
     // If we are here we are connected to WLAN
     // So now test the Internet Connection
-    if(isConnectedToInternet()){
+    if(!isConnectedToInternet()){
       Serial.println("Error Internet connection failed");
     }
   }
